@@ -1,0 +1,96 @@
+.footer {
+  background-color: black;
+  width: 100%;
+  height: max-content;
+  padding-bottom: 10px;
+
+  .footer-container {
+    margin-left: 100px;
+    .css-zow5z4-MuiGrid-root > .MuiGrid-item {
+      padding: 0%;
+    }
+    .direction-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      font-variant: all-petite-caps;
+      font-size: large;
+      .direction {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: start;
+        h5 {
+          margin-top: auto;
+          color: rgb(156, 158, 160);
+        }
+        .location-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 10px;
+          margin-top: -4px;
+        }
+      }
+    }
+    .social-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      font-variant: all-petite-caps;
+      font-size: large;
+    }
+    ul {
+      margin-top: 0px;
+      padding-left: 0px;
+      li {
+        display: flex;
+        flex-direction: row;
+        a {
+          color: rgb(156, 158, 160);
+          margin-top: auto;
+        }
+        .IG-icon {
+          width: 30px;
+          height: 30px;
+          margin-left: 5px;
+        }
+        .FC-icon {
+          width: 20px;
+          height: 20px;
+          margin-left: 14px;
+          margin-top: 2px;
+        }
+        .WP-icon {
+          width: 20px;
+          height: 20px;
+          margin-left: 15px;
+          margin-top: 6px; 
+        }
+      }
+    }
+    h2 {
+      .social-icons {
+        h3 {
+          color: white;
+          display: flex;
+        }
+      }
+    }
+    .privacy-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      font-variant: all-petite-caps;
+      font-size: large;
+      .button-politics {
+        color: white;
+        background-color: #616161;
+        margin-right: auto;
+        margin-left: auto;
+        right: 15px;
+      }
+    }
+  }
+}

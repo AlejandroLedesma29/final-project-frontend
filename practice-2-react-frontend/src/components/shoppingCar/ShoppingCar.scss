@@ -1,0 +1,58 @@
+.title-shopping-car{
+    margin-left: 50px;
+    font-variant: all-petite-caps;
+}
+
+.shopping-cart-card {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    gap: 16px; 
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-variant: all-petite-caps;
+    margin-right: 180px;
+    .card-image {
+        flex: 0 0 auto; 
+        width: 200px; 
+    }
+
+    .card-content {
+        flex: 1; 
+        background: linear-gradient(45deg, white, #ececec);
+    }
+    .css-46bh2p-MuiCardContent-root {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .shopping-cart-card {
+        display: block;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 16px; 
+        margin-left: 50px;
+        margin-bottom: 10px;
+        font-variant: all-petite-caps;
+        width: fit-content;
+    
+        .card-image {
+            flex: 0 0 auto; 
+            width: 200px; 
+        }
+    
+        .card-content {
+            flex: 1; 
+            background: linear-gradient(45deg, white, #ececec);
+        }
+        .css-46bh2p-MuiCardContent-root {
+            padding: 25px;
+        }
+    }
+}
+
+.no-shopping-car-message{
+    margin-left: 50px;
+    font-variant: all-petite-caps;
+}

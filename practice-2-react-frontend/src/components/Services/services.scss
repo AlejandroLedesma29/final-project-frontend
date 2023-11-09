@@ -1,0 +1,17 @@
+.main-cards{
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  .categoryCards{
+    display: flex;
+  .card{
+    margin: 5px; 
+  }
+  }
+  .secondaryCards{
+    margin-left: 230px;
+    .servicecard{
+      margin:10px
+    }
+  }
+}
