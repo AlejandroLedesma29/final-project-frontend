@@ -1,8 +1,12 @@
 const user_model = require("../models/user");
 const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
+
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const validateEmail = email => {
-    const emaildomain = /@(gmail|outlook)\.com$/;
+    const emaildomain = /@(gmail|outlook|autonoma\.edu\.co)$/;
     return emaildomain.test(email);
 };
 
@@ -58,6 +62,80 @@ const createUser = async (req, res) => {
     }
 };
 
+const resetPassword = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        
+
+    const user = await user_model.findById(new mongoose.Types.ObjectId(userId));
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+  
+      console.log(req.body.password);
+      const hashedContraseña = await bcrypt.hash(req.body.password, 10);
+  
+      usuario.password = hashedContraseña;
+      await usuario.save();
+  
+      console.log(usuario);
+  
+      console.log("Contraseña actualizada con éxito");
+      res.status(200).json({ msg: "Contraseña actualizada con éxito" });
+    } catch (error) {
+      console.error("Error al cambiar la contraseña:", error.message);
+      res.status(500).json({ msg: "Error interno del servidor" });
+    }
+  };
+
+  const resetPasswordEmail = async (req, res) => {
+    try {
+      console.log(req.body);
+      const { email } = req.body;
+      console.log(email);
+      const usuario = await User.findOne({ email });
+      console.log(usuario);
+  
+      if (!usuario) {
+        return res
+          .status(404)
+          .json({ msg: "Usuario no registrado en el sistema" });
+      }
+  
+      if (!usuario.active) {
+        return res.status(400).json({ msg: "Usuario no activo en el sistema" });
+      }
+
+      const activationLink = `http://localhost:3001/api/v1/user/resetPassword/${usuario._id}`;
+      console.log(email);
+      const msg = {
+        to: email,
+        from: 'juliana.ledesmaz@autonoma.edu.co',
+        subject: 'Activa tu cuenta',
+        text: `Haz clic en el siguiente recuperar tu contraseña: ${activationLink}`,
+        html: `<p>Haz clic en el siguiente recuperar tu contraseña:</p><a href="${activationLink}">${activationLink}</a>`,
+      };
+
+      sgMail
+        .send(msg)
+        .then(() => {
+          console.log('Email sent')
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
+      res
+        .status(200)
+        .json({
+          msg: "Correo de restablecimiento de contraseña enviado exitosamente",
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Error interno del servidor" });
+    }
+  };
 
 const listUsers = async (req, res) => {
     if (req.user.role !== "admin") {
@@ -110,19 +188,27 @@ const editUser = async (req, res) => {
     if (req.user.role !== "admin") {
         return res.status(403).json({ message: "No tienes permiso para editar otros usuarios" });
     }
-
+    
     const userId = req.params.userId;
     const query = { _id: userId };
 
-    const allowedFields = ["firstname", "lastname", "contry","depto","state","municipality","active","role"];
-
+    const allowedFields = ["firstname", "lastname", "country", "depto", "state", "municipality", "active", "role"];
     const update = {};
+
     allowedFields.forEach(field => {
-        if (req.body[field]) {
-            update[field] = req.body[field];
+        if (req.body[field] !== undefined && req.body[field] !== null) {
+            if (field === 'active' && typeof req.body[field] === 'object' && req.body[field].hasOwnProperty('active')) {
+                update[field] = req.body[field].active;
+            } else {
+                update[field] = req.body[field];
+            }
+            console.log(`Campo '${field}' actualizado con valor:`, update[field]);
         }
     });
 
+    console.log(req.body, "body que llega");
+    console.log(update, "como se va a actualizar");
+    
     try {
         const userExists = await user_model.exists(query);
         if (!userExists) {
@@ -171,14 +257,41 @@ const deleteMe = async (req, res) => {
     try {
         const userExists = await user_model.exists(query);
         if (!userExists) {
-            return res.status(400).json({ message: "Usuario no encontrado" });
+          return res.status(400).json({ message: "Usuario no encontrado" });
         }
-
+    
         await user_model.deleteOne(query);
         res.status(200).json({ message: "Usuario eliminado correctamente" });
-    } catch (err) {
-        res.status(500).json({ message: err });
+      } catch (err) {
+        console.error('Error al eliminar el usuario:', err);
+        res.status(500).json({ message: "Error al eliminar el usuario", error: err.message });
+      }
+};
+
+const activation = async (req, res) => {
+    const userId = req.params.userId;
+
+  try {
+    const user = await user_model.findById(new mongoose.Types.ObjectId(userId));
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
+
+    // Si ya está activado, puedes manejarlo como quieras (por ejemplo, redirigir a una página especial).
+    if (user.active) {
+      return res.status(200).json({ message: 'La cuenta ya está activada' });
+    }
+
+    // Actualiza el estado de activación
+    user.active = true;
+    await user.save();
+
+    res.status(200).json({ message: 'Cuenta activada correctamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al activar la cuenta'+error });
+  }
 };
 
 
@@ -208,6 +321,7 @@ module.exports = {
     listUsers,
     listUser,
     listMe,
+    activation,
     editUser,
     editMe,
     deleteMe,

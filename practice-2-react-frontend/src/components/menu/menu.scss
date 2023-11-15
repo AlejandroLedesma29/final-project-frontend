@@ -1,413 +1,157 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-}
-
-
-
 .menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #000000;
-  padding: 10px 20px; 
-
-  ul {
-    padding: 0;
-    display: flex;
-    list-style: none;
-    align-items: center;
-    margin-right: auto;
-
-    li {
-      margin-right: 20px;
-
-      a {
-        text-decoration: none;
-        font-size: 17px;
-        font-weight: 400;
-        font-variant: all-petite-caps;
-        color: white;
-        padding: 5px 10px;
-        transition: background-color 0.3s;
-
-        &:hover {
-          color: rgb(140, 140, 214);
-        }
-
-        &:active {
-          color: #291f5a;
-          font-weight: 700;
-        }
-      }
-    }
-  }
-
-  img {
-    max-width: 120px;
-    height: auto;
-    margin-right: 3%;
-    
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-
-  .avatar-container {
-    display: flex;
-    align-items: center;
-
-    .avatar {
-      max-width: 70px;
-      height: auto;
-      border-radius: 50%;
-      border: 2px solid #6b6b6b8e;
-      margin-left: 20px;
-    }
-
-  .button-login{
-    color:white;
-  }
-  }
-
-  .content {
-    padding-left: 80px;
-    padding-right: 40px;
-
-    img[src="../assets/images/Logos_UAM-08.png"] {
-      max-width: 70px;
-      height: auto;
-      margin-right: 3%;
-    }
-  }
-
-  @media (max-width: 950px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-
-    #menu-list.show-menu {
-      width: 89%;
+    background-color: #000000;
+    padding: 10px 20px; 
+  
+    ul {
+      padding: 0;
       display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      background-color: rgb(143, 141, 134);
-      padding: 10px 20px;
-      z-index: 1;
-      width: 89%;
-    }
-
-    .slidePic {
-      width: auto;
-      height: 250px;
-    }
-
-    .uamLogo {
-      display: none;
-    }
-
-    .menu-toggle {
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #ffffff;
-      display: block;
-    }
-
-    img.hide-logo {
-      display: none;
-    }
-
-    #menu-list {
-      display: none;
-      top: 60px;
-      right: 10px;
-      left: 0;
-      padding: 10px 20px;
-      z-index: 1;
-      width: 100%;
-
+      list-style: none;
+      align-items: center;
+      margin-right: auto;
+  
       li {
-        text-align: center;
-
+        margin-right: 20px;
+  
         a {
-          font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
-          font-weight: bold;
-
+          text-decoration: none;
+          font-size: 17px;
+          font-weight: 400;
+          font-variant: all-petite-caps;
+          color: white;
+          padding: 5px 10px;
+          transition: background-color 0.3s;
+  
           &:hover {
-            color: blue;
-            background-color: none;
+            color: rgb(140, 140, 214);
+          }
+  
+          &:active {
+            color: #291f5a;
+            font-weight: 700;
           }
         }
       }
-
-      &.show-menu {
-        display: list-item;
-        margin-top: 8%;
-        background-color: rgb(197, 196, 193);
+    }
+  
+    .uamLogo{
+      max-width: 120px;
+      height: auto;
+      margin-right: 3%;
+      
+    }
+    .avatar-user{
+        max-width: 50px;
+        height: auto;
+        border-radius: 50%;
+    }
+  
+    .menu-toggle {
+      display: none;
+    }
+  
+    .avatar-container {
+      display: flex;
+      align-items: center;
+        
+      .avatar {
+        max-width: 70px;
+        height: auto;
+        border-radius: 50%;
+        border: 2px solid #6b6b6b8e;
+        margin-left: 20px;
+      }
+  
+    .button-login{
+      color:white;
+    }
+    }
+  
+    .content {
+      padding-left: 80px;
+      padding-right: 40px;
+      
+  
+      img[src="../assets/images/Logos_UAM-08.png"] {
+        max-width: 70px;
+        height: auto;
+        margin-right: 3%;
+      }
+    }
+    
+  
+    @media (max-width: 950px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+  
+      #menu-list.show-menu {
+        width: 89%;
+        display: flex;
         flex-direction: column;
         position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #f6f5f7;
+        padding: 10px 20px;
+        z-index: 1;
+        width: 89%;
       }
-    }
-  }
-}
-
-.flex1 {
-  background: rgb(207, 207, 207);
-  padding: 20px; 
-  height: 665px;
   
-
-  .slider-container {
-    .slider-main {
-      .slider-content {
-        .slider-title {
-          color: black;
-          
-          h2 {
-            display: flex;
-            margin-left: 60px;
-            font-weight: bold;
-            font-variant: all-petite-caps;
-            text-align: center;
-          }
-        }
-        .slider-subtitle {
-          color: black;
-          margin-left: 60px;
-          margin-bottom: 10px;
-          h3 {
-            display: flex;
-            margin: 0;
-            font-weight: lighter;
-            font-variant: all-petite-caps;
-          }
-        }
+      .slidePic {
+        width: auto;
+        height: 250px;
       }
-    }
-    ul.slick-dots {
-      position: absolute;
-      bottom: -50px;
-      display: block;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      text-align: center;
-    }
-    button.slick-prev:before,
-    button.slick-next:before {
-      font-size: 30px;
-      position: fixed;
-      color: white;
-      display: block;
-    }
-    button.slick-prev{
-      left: 15%;
-    }
-    button.slick-next{
-      right: 15%;
-    }
-    @media (max-width: 1230px){
-      button.slick-prev{
-        left: 5%;
-      }
-      button.slick-next{
-        right: 6%;
-      }
-    }
-  }
-  @media (max-width: 950px) {
-    .slider-container {
-      .slider-main {
-        .slider-content {
-          .slidePic {
-            display: inline-table;
-            height: auto;
-            width: -webkit-fill-available;
-            margin: 5%;
-          box-shadow: -15px 10px 10px rgba(0, 0, 0, 0.333);
-          }
-          .slider-title {
-            color: black;
-            h2 {
-              justify-content: center;
-              display: flex;
-              margin-left: 18px;
-              margin-top: -10px;
-              font-weight: bold;
-              font-variant: all-petite-caps;
-            }
-          }
-          .slider-subtitle {
-            color: black;
-            margin-left: 60px;
-            margin-bottom: 10px;
-            h3 {
-              justify-content: center;
-              display: flex;
-              margin: 0;
-              font-weight: lighter;
-              font-variant: all-petite-caps;
-              text-align: center;
-              margin-left: -30px;
-            }
-          }
-        }
-      }
-      ul.slick-dots {
-        visibility: hidden;
-      }
-      button.slick-prev:before,
-      button.slick-next:before {
+  
+      .uamLogo {
         display: none;
       }
-    }
-  }
-
-  .button-mas-info {
-    margin-left: 60px;
-  }
-}
-
-.products1 {
-  display: flow-root;
-  height: auto;
-  background: rgb(207, 207, 207);
-  color: white; 
-  padding: 20px; 
-  .cards {
-    display: flex;
-    margin-top: 15%;
-    margin-left: 5%;
-
-    .infocard {
-      margin: 5px;
-      box-shadow: -15px 10px 10px rgba(0, 0, 0, 0.333);
-      height: fit-content;
-      .css-46bh2p-MuiCardContent-root {
-        padding: 16px;
-        background: linear-gradient(180deg, #fdfdfd, #a9a9a9);
+  
+      .menu-toggle {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #ffffff;
+        display: block;
       }
-    }
-
-    .subclassinfo {
-      background-color: #f0f0f04f;
-      padding: 20px;
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-direction: row-reverse;
-      margin-left: 20pc;
-      margin-top: -15pc;
-    }
-
-    .PQRScard {
-      box-shadow: -15px 10px 10px rgba(0, 0, 0, 0.333);
-      margin: 5px;
-      height: fit-content;
-      .css-46bh2p-MuiCardContent-root {
-        padding: 16px;
-        background: linear-gradient(180deg, #fdfdfd, #a9a9a9);
+  
+      img.hide-logo {
+        display: none;
+      }
+  
+      #menu-list {
+        display: none;
+        top: 60px;
+        right: 10px;
+        left: 0;
+        padding: 10px 20px;
+        z-index: 1;
+        width: 100%;
+  
+        li {
+          text-align: center;
+  
+          a {
+            font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-weight: bold;
+  
+            &:hover {
+              color: blue;
+              background-color: none;
+            }
+          }
+        }
+  
+        &.show-menu {
+          display: list-item;
+          margin-top: 8%;
+          background-color: rgb(197, 196, 193);
+          flex-direction: column;
+          position: absolute;
+        }
       }
     }
   }
-}
-
-/* Estilo para la sección Contact */
-.contact1 {
-  background: rgb(207, 207, 207);
-  color: white; /* Color del texto en la sección */
-  padding: 20px; /* Espaciado interno */
-  padding-bottom: 10%;
-  height: auto;
-  display: flow-root;
-}
-
-/* Estilo para la sección de iconos */
-.icon-section {
-  position: fixed;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.555);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  margin-left: 10px;
-  border-radius: 10%;
-  z-index: 3;
-
-  a {
-    text-decoration: none;
-    font-size: 20px;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    color: #ffffff8e;
-    :hover {
-      transform: scale(1.1);
-      transition: transform 0.3s ease;
-      color: #000;
-    }
-  }
-
-  i {
-    font-size: 24px;
-  }
-
-  .iconlist {
-    :active {
-      color: black;
-    }
-  }
-}
-
-.modal-style {
-  background-color: #00000057;
-  .box-style {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 550px;
-    background-color: white; 
-    border: 3px solid #000;
-    box-shadow: 24px; 
-    padding: 4px; 
-
-    @media (max-width: 950px) {
-      width: 74%;
-      height: auto;
-    }
-
-    .title-modal {
-      display: flex;
-      justify-content: center;
-    }
-    .button-fav-group {
-      display: flex;
-      justify-content: end;
-      .fab-button {
-        margin: 5px;
-        background-color: rgb(204, 57, 57);
-      }
-      .shop-button {
-        margin: 5px;
-        background-color: rgb(105, 105, 212);
-      }
-    }
-  }
-}

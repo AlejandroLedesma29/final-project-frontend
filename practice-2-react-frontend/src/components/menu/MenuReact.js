@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import Fab from '@mui/material/Fab';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import "./menu.scss";
+import "./menuReact.scss";
 import avatar from "../../assets/images/avatar.png";
 import logo from "../../assets/images/Logo.png";
+import Button from "@mui/material/Button";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { images } from "../../assets";
 import ShoppingCar from "../shoppingCar/ShoppingCar"
 import Footer from "../footer/Footer";
 import Favorites from "../favorites/Favorites"
+import MenuComponent from "./menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -25,17 +27,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 
 const posts = [
   {
@@ -170,24 +162,7 @@ export const MenuReact = () => {
         </div>
       )}
 
-      <div className="menu">
-        <img className="uamLogo" src={logo} alt="Logo UAM" />
-        <button id="menu-toggle" className="menu-toggle">
-          ☰
-        </button>
-        <ul id="menu-list">
-          <li>
-            <a href="#flex1">Cátalogo</a>
-          </li>
-          <li>
-            <a href="#products1">Marcas</a>
-          </li>
-          <li>
-            <a href="#contact1">Promociones</a>
-          </li>
-        </ul>
-        <Button className="button-login" onClick={() => navigate("/login")}>Iniciar sesión</Button>
-      </div>
+      <MenuComponent/>
 
       <div className="flex1" id="flex1">
         <div className="slider-container">
@@ -196,7 +171,7 @@ export const MenuReact = () => {
               {posts.length > 0 ? (
                 posts.map((post) => (
                   <div className="slider-content">
-                    <img src={post.avatar} class="slidePic" />
+                    <img src={post.avatar} className="slidePic" />
                     <div className="slider-title">
                       <h2>{post.title}</h2>
                     </div>
@@ -225,6 +200,9 @@ export const MenuReact = () => {
       <div className="footer">
       <Footer/>
       </div>
+
+
+
       <Modal
         className="modal-style"
         open={open}

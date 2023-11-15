@@ -1,0 +1,139 @@
+body {
+    background-color: #f6f5f7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .Layout-register {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  }
+
+  .bottom-logo {
+    position: fixed;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20vw;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .middle-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .middle-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4.5vw;
+    background-color: #303030;
+    @media (max-width: 850px) {
+      height: 5%;
+    }
+  }
+  .middle-box h1 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 1vw;
+    font-size: 2vw;
+    font-family: sans-serif;
+    color: white;
+    @media (max-width: 850px) {
+      font-size: 5vw;
+  }
+    }
+
+
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0;
+    }
+    
+    .cancel-button {
+      background-color: #e74c3c; 
+      color: white;
+      border: none;
+      width: 10rem;
+      height: 2.5rem; 
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      margin-right: 0.5rem; 
+    }
+    
+    .register-button {
+      background-color: #2ecc71; 
+      color: white;
+      border: none;
+      width: 10rem;
+      height: 2.5rem; 
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      margin-left: 0.5rem; 
+    }
+
+    .texto-datos{
+        flex-direction: column;
+        align-items: center;
+        font-family: sans-serif;
+        color: black;
+        font-size: inherit;
+        text-align: center;
+        width: 100%;
+        margin-top: 1%;
+        &-subrayado{
+            text-decoration: underline;
+      }
+    }
+    .select-custom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .formulario-dimensiones{
+      background: #f6f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      width: 80vh;
+
+      form {
+        width: 100%; 
+      }
+    
+      .ant-row {
+        display: flex;
+        width: 350px;
+        justify-content: center;
+    
+        .ant-col {
+          flex: 0 0 100%; 
+          margin-bottom: 10px; 
+        }
+    
+        .select-custom {
+          width: 100%;
+        }
+        .ant-select-selector{
+          width: 100%;
+        }
+
+        .alguna-cosa{
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+

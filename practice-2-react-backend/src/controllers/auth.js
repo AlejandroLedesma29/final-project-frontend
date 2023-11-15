@@ -1,10 +1,37 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const jwt = require("../utils/jwt");
+const multer = require('multer');
+require("dotenv").config();
+const path = require('path');
+const accountSid = process.env.SID;
+const authToken = process.env.tokenTwilio;
+const client  = require('twilio')(accountSid, authToken);
 
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.resolve(__dirname, '../../../practice-2-react-frontend/src/assets/images/avatars'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+
+
+const upload = multer({ storage: storage });
 
 const register = async (req, res) => {
-    const {
+  try {
+    upload.single('avatar')(req, res, async function (err) {
+      if (err) {
+        return res.status(500).send({ msg: 'Error al procesar los datos del formulario' });
+      }
+
+      const {
         firstname,
         lastname,
         email,
@@ -15,43 +42,75 @@ const register = async (req, res) => {
         state,
         documentType,
         document,
-    } = req.body;
+      } = req.body;
 
-    if (!email) return res.status(400).send({ msg: "El email es requerido" });
-    if (!password) return res.status(400).send({ msg: "La contraseña es requerida" });
+      if (!email || !password) {
+        return res.status(400).send({ msg: 'El email y la contraseña son obligatorios' });
+      }
 
-    try {
-        const existingUser = await User.findOne({ email: email });
+      const existingUser = await User.findOne({ email: email });
+      if (existingUser) {
+        return res.status(400).send({ msg: 'Ya existe un usuario con ese email' });
+      }
 
-        if (existingUser) {
-            return res.status(400).send({ msg: "Ya existe un usuario con ese email" });
-        }
-        
-        const existingUser2 = await User.findOne({ document: document });
-        if (existingUser2) {
-            return res.status(400).send({ msg: "Ya existe un usuario con ese documento" });
-        }
-        const salt = bcrypt.genSaltSync(10);
-        const hashPassword = bcrypt.hashSync(password, salt);
+      const existingUser2 = await User.findOne({ document: document });
+      if (existingUser2) {
+        return res.status(400).send({ msg: 'Ya existe un usuario con ese documento' });
+      }
 
-        const user = new User({
-            firstname,
-            lastname,
-            email: email.toLowerCase(),
-            password: hashPassword,
-            country,
-            depto,
-            municipality,
-            state,
-            documentType,
-            document,
-        });
+      const salt = bcrypt.genSaltSync(10);
+      const hashPassword = bcrypt.hashSync(password, salt);
 
-        const userStorage = await user.save();
-        res.status(201).send(userStorage);
-    } catch (error) {
-        res.status(400).send({ msg: "Error al crear el usuario: " + error });
-    }
+      const user = new User({
+        firstname,
+        lastname,
+        email: email.toLowerCase(),
+        password: hashPassword,
+        country,
+        depto,
+        municipality,
+        state,
+        documentType,
+        document,
+      });
+
+      if (req.file) {
+        user.avatar = req.file.filename;
+      }
+
+      const userStorage = await user.save();
+      const activationLink = `http://localhost:3001/api/v1/user/activate/${userStorage._id}`;
+      console.log(userStorage.email);
+      const msg = {
+        to: userStorage.email,
+        from: 'juliana.ledesmaz@autonoma.edu.co',
+        subject: 'Activa tu cuenta',
+        text: `Haz clic en el siguiente enlace para activar tu cuenta: ${activationLink}`,
+        html: `<p>Haz clic en el siguiente enlace para activar tu cuenta:</p><a href="${activationLink}">${activationLink}</a>`,
+      };
+
+      sgMail
+        .send(msg)
+        .then(() => {
+          console.log('Email sent')
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
+      client.messages.create({
+        body: `Haz clic en el siguiente enlace para activar tu cuenta: ${activationLink}`,
+        from: '+12565677594',
+        to: '+573178747871'
+      })
+        .then(message => console.log('Mensaje de SMS enviado:', message.sid))
+        .catch(error => console.error('Error al enviar el mensaje de SMS:', error));
+
+      res.status(201).send(userStorage);
+    });
+  } catch (error) {
+    res.status(400).send({ msg: 'Error al crear el usuario: ' + error });
+  }
 };
 
 
