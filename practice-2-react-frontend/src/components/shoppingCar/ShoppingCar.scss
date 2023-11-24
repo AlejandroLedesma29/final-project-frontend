@@ -1,6 +1,6 @@
 .title-shopping-car{
     margin-left: 50px;
-    font-variant: all-petite-caps;
+    font-variant: contextual;
 }
 
 .shopping-cart-card {
@@ -10,7 +10,7 @@
     gap: 16px; 
     margin-left: 50px;
     margin-bottom: 10px;
-    font-variant: all-petite-caps;
+    font-variant: contextual;
     margin-right: 180px;
     .card-image {
         flex: 0 0 auto; 
@@ -34,7 +34,7 @@
         gap: 16px; 
         margin-left: 50px;
         margin-bottom: 10px;
-        font-variant: all-petite-caps;
+        font-variant: contextual;
         width: fit-content;
     
         .card-image {
@@ -54,6 +54,6 @@
 
 .no-shopping-car-message{
     margin-left: 50px;
-    font-variant: all-petite-caps;
+    font-variant: contextual;
     color: #333;
 }

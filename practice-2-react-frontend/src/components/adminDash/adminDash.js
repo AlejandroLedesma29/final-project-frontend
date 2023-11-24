@@ -5,6 +5,7 @@ import { Form, Input } from "antd";
 import { jwtDecode } from 'jwt-decode';
 import axios from "axios";
 import AdminMenu from './adminMenu/adminMenu';
+import './adminDash.scss'
 
 function Admin (){
   const columns = [

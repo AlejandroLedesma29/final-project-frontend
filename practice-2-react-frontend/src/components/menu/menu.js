@@ -27,7 +27,7 @@ const MenuComponent = () => {
     if (userRole === 'admin') {
       navigate('/admin'); 
     } else {
-      navigate('/userLog'); 
+      navigate('/userDash'); 
     }
   };
 

@@ -250,23 +250,24 @@ const editMe = async (req, res) => {
     }
 };
 
-const deleteMe = async (req, res) => {
+const deactivate = async (req, res) => {
     const userId = req.user.user_id;
-    const query = { _id: userId };
 
-    try {
-        const userExists = await user_model.exists(query);
-        if (!userExists) {
-          return res.status(400).json({ message: "Usuario no encontrado" });
-        }
-    
-        await user_model.deleteOne(query);
-        res.status(200).json({ message: "Usuario eliminado correctamente" });
-      } catch (err) {
-        console.error('Error al eliminar el usuario:', err);
-        res.status(500).json({ message: "Error al eliminar el usuario", error: err.message });
-      }
+  try {
+    const user = await user_model.findById(new mongoose.Types.ObjectId(userId));
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+    user.active = false;
+    await user.save();
+    res.status(200).json({ message: 'Cuenta desactivada correctamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al desactivar la cuenta'+error });
+  }
 };
+
 
 const activation = async (req, res) => {
     const userId = req.params.userId;
@@ -277,16 +278,11 @@ const activation = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
-
-    // Si ya está activado, puedes manejarlo como quieras (por ejemplo, redirigir a una página especial).
     if (user.active) {
       return res.status(200).json({ message: 'La cuenta ya está activada' });
     }
-
-    // Actualiza el estado de activación
     user.active = true;
     await user.save();
-
     res.status(200).json({ message: 'Cuenta activada correctamente' });
   } catch (error) {
     console.error(error);
@@ -324,6 +320,7 @@ module.exports = {
     activation,
     editUser,
     editMe,
-    deleteMe,
-    deleteUser
+    deactivate,
+    deleteUser,
+    resetPassword
 };

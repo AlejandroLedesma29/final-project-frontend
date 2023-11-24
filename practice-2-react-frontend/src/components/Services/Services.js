@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./services.scss";
+import "./Services.scss";
 
 import logo from "../../assets/images/Frank.png";
 import cardInfo from "../../assets/images/infocard.jpg";

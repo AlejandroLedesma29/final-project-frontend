@@ -14,12 +14,14 @@
       flex-direction: column;
       justify-content: center;
       color: white;
-      font-variant: all-petite-caps;
+      font-variant: contextual;
       font-size: large;
+      
       .direction {
         display: flex;
         flex-direction: row-reverse;
         justify-content: start;
+        margin-top: 8px;
         h5 {
           margin-top: auto;
           color: rgb(156, 158, 160);
@@ -28,7 +30,6 @@
           width: 24px;
           height: 24px;
           margin-right: 10px;
-          margin-top: -4px;
         }
       }
     }
@@ -37,8 +38,13 @@
       flex-direction: column;
       justify-content: center;
       color: white;
-      font-variant: all-petite-caps;
+      font-variant: contextual;
       font-size: large;
+    }
+    .social-list{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
     }
     ul {
       margin-top: 0px;
@@ -55,17 +61,15 @@
           height: 30px;
           margin-left: 5px;
         }
-        .FC-icon {
+        .TT-icon {
           width: 20px;
           height: 20px;
           margin-left: 14px;
-          margin-top: 2px;
         }
         .WP-icon {
           width: 20px;
           height: 20px;
           margin-left: 15px;
-          margin-top: 6px; 
         }
       }
     }
@@ -82,7 +86,7 @@
       flex-direction: column;
       justify-content: center;
       color: white;
-      font-variant: all-petite-caps;
+      font-variant: contextual;
       font-size: large;
       .button-politics {
         color: white;
