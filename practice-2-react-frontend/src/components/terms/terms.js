@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './terms.scss';
+import MenuComponent from '../menu/menu';
 
 function TermsAndConditionsPage() {
   const initialSections  = [
@@ -197,6 +198,8 @@ function TermsAndConditionsPage() {
   };
 
   return (
+    <div>
+      <MenuComponent />
     <div className='body-terms'>
       <div className="section-buttons">
         {sections.map((section) => (
@@ -213,6 +216,7 @@ function TermsAndConditionsPage() {
         <h2>{activeSection.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: activeSection.content }} />
       </div>
+    </div>
     </div>
   );
 }

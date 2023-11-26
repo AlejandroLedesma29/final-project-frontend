@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={12} md={3}>
             <div className="direction-container">
               <h2>Ubicación</h2>
             <div className="direction">
@@ -24,7 +24,15 @@ const Footer = () => {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={12} md={3}>
+            <div className="privacy-container">
+              <h2>Contacto</h2>
+              <h5>fullhouse@gmail.com</h5>
+              
+              <Button variant="contained" className="button-politics" onClick={() => navigate("/help")}>PQRSF</Button>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={12} md={3}>
               <div className="social-container">
                 <h2>Redes sociales</h2>
                 <ul className="social-list">
@@ -46,9 +54,9 @@ const Footer = () => {
                 </ul>
               </div>
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={12} md={3}>
             <div className="privacy-container">
-              <h2>Política y privacidad de datos</h2>
+              <h2>Terminos y condiciones </h2>
               <Button variant="contained" className="button-politics" onClick={() => navigate("/terms")}>¡Conozca nuestras políticas!</Button>
             </div>
           </Grid>

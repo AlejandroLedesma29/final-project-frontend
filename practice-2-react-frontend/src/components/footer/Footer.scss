@@ -3,12 +3,15 @@
   width: 100%;
   height: max-content;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  
 
   .footer-container {
-    margin-left: 100px;
-    .css-zow5z4-MuiGrid-root > .MuiGrid-item {
-      padding: 0%;
-    }
+    width: 100%;
     .direction-container {
       display: flex;
       flex-direction: column;
@@ -16,12 +19,13 @@
       color: white;
       font-variant: contextual;
       font-size: large;
-      
+      align-items: center;
+      margin: 0px 20px 0px 20px;
+      padding-left: 30px;
       .direction {
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: start;
-        margin-top: 8px;
+        flex-direction: row;
+        justify-content: flex-start;
         h5 {
           margin-top: auto;
           color: rgb(156, 158, 160);
@@ -30,6 +34,7 @@
           width: 24px;
           height: 24px;
           margin-right: 10px;
+          margin-top: -4px;
         }
       }
     }
@@ -40,36 +45,41 @@
       color: white;
       font-variant: contextual;
       font-size: large;
-    }
-    .social-list{
-      display: flex;
       align-items: center;
-      flex-direction: row;
+      margin: 0px 20px 0px 20px;
+      .icons-social {
+        display: flex;
+      }
+    }
+    h2 {
+      color: white;
     }
     ul {
       margin-top: 0px;
       padding-left: 0px;
+      display: flex;
+      flex-direction: row;
       li {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
         a {
           color: rgb(156, 158, 160);
-          margin-top: auto;
+          margin: 5px;
         }
         .IG-icon {
-          width: 30px;
-          height: 30px;
-          margin-left: 5px;
+          width: 35x;
+          height: 35px;
         }
-        .TT-icon {
+        .TK-icon {
           width: 20px;
           height: 20px;
-          margin-left: 14px;
         }
         .WP-icon {
-          width: 20px;
-          height: 20px;
-          margin-left: 15px;
+          width: 29px;
+          height: 29px;
         }
       }
     }
@@ -88,13 +98,55 @@
       color: white;
       font-variant: contextual;
       font-size: large;
-      .button-politics {
+      align-items: center;
+      margin: 0px 20px 0px 20px;
+      h2 {
+        text-align: center;
+      }
+      .button-privacy{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .button-politics {
+          color: white;
+          background-color: #616161;
+        }
+      }
+      
+    }
+    .hours-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      font-variant: contextual;
+      font-size: large;
+      align-items: center;
+      margin: 0px 20px 0px 20px;
+      h4{
         color: white;
-        background-color: #616161;
-        margin-right: auto;
-        margin-left: auto;
-        right: 15px;
+        margin-bottom: 5px;
+      }
+      p{
+        margin: 0px;
+        color: rgb(156, 158, 160);
+        font-size: small;
       }
     }
   }
+  .logo{
+    display: flex;
+    justify-content: center;
+    img{
+      max-width: 70px;
+        height: auto;
+        margin-right: 3%;
+    }
+  }
+  
+}
+.button-politics {
+  color: white;
+  background-color: #616161;
 }

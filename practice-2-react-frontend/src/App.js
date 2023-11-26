@@ -7,6 +7,7 @@ import LogIn from './components/login/login.js'
 import Register from './components/register/register.js'
 import Admin from './components/adminDash/adminDash.js'
 import UserLog from './components/userDash/userLog.js'
+import Pqrsf from './components/PQRSF/PQRSF'
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
           <Route path="/terms" element={<TermsAndConditionsPage/>} />
           <Route path="/login" element={<LogIn/>} />
           <Route path="/admin" element={<Admin/>} />
-          <Route path="/register" element={<Register/>} />\
+          <Route path="/register" element={<Register/>} />
           <Route path="/userDash" element={<UserLog/>} />
+          <Route path="/help" element={<Pqrsf/>} />
         </Routes>
       </div>
     </Router>

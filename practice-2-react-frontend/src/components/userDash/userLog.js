@@ -13,6 +13,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const avatars = require.context('../../assets/images/avatars', false, /\.(png|jpe?g|svg)$/);
 
@@ -139,7 +140,7 @@ const UserLog = () => {
 
   const menuOptions = [
     { label: 'Perfil', icon: <AccountCircleIcon /> },
-    { label: 'Configuración', icon: <BuildCircleIcon /> }
+    { label: 'Config.', icon: <BuildCircleIcon /> }
   ];
 
 
@@ -149,8 +150,6 @@ const UserLog = () => {
       <button className="toggle-button" onClick={toggleMenu}>
         {menuVisible ? <MenuOpenIcon /> : <MenuIcon/>}
       </button>
-
-      {userId ? (
         <div className="user-section" onClick={handleImageClick}>
           <img
             className="avatar-user"
@@ -163,11 +162,7 @@ const UserLog = () => {
             style={{ cursor: 'pointer' }}
           />
         </div>
-      ) : (
-        <Button className="button-login" onClick={() => navigate('/login')}>
-          Iniciar sesión
-        </Button>
-      )}
+        <Button className="button-logout" onClick={handleLogout}><LogoutIcon /></Button>
     </div>
 
     <div className='content-container'>
@@ -186,13 +181,52 @@ const UserLog = () => {
 
         <div className='content-user'>
           {selectedOption === 'Perfil' && (
-            <Button className="button-logout" onClick={handleLogout}>
-              Cerrar sesión
-            </Button>
+            <div>
+            <h1>¡ Bienvenido, {userData?.firstname} !</h1>
+
+            <img
+              className="avatar-profile"
+              src={
+                avatars.keys().includes(`./${userDocument}.png`)
+                  ? avatars(`./${userDocument}.png`)
+                  : require('../../assets/images/Frank.png')
+              }
+              alt="Imagen de usuario"
+            />
+
+            <h1>Información del usuario </h1>
+
+
+            <table>
+              <tbody>
+                <tr>
+                  <td>Correo Electrónico:</td>
+                  <td>{userData?.email}</td>
+                </tr>
+                <tr>
+                  <td>No. Documento:</td>
+                  <td>{userData?.document}</td>
+                </tr>
+                <tr>
+                  <td>Pais:</td>
+                  <td>{userData?.country}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            
+
+
+            </div>
           )}
-          {selectedOption === 'Configuración' && (
+          {selectedOption === 'Config.' && (
             <div className='configuration-panel'>
-              <Button onClick={handleOpenDialog}>
+              <h2>Configuración de la cuenta</h2>
+              <h4>Aqui puedes acceder a la configuracion de tu cuenta</h4>
+              <Button  className="password-button" variant="contained" onClick={handleOpenDialog}>
+                Cambiar contraseña
+              </Button>
+              <Button className="deactive-button"  variant="contained" onClick={handleOpenDialog}>
                 Cancelar cuenta
               </Button>
               <Dialog

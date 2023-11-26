@@ -1,0 +1,251 @@
+body{
+    padding: 0 ;
+  }
+  
+  .Pqrsf-container {
+    height: 100vh;
+    background-color: #f6f5f7;
+  }
+  
+  .PQRSF {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+    .PQRSF-Form {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      padding: 30px;
+      margin-top: 5vh;
+  
+      .PQRSF-Form-content {
+        width: 100%;
+        margin-top: 1vw;
+  
+        .PQRSF-Form-content-title {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+  
+          .PQRSF-Form-content-title-label {
+            font-size: x-large;
+            color: #1b263b;
+            font-weight: 700;
+            margin: 5px 20px 5px 7vw;
+          }
+        }
+  
+        .PQRSF-form-subtitles {
+          font-size: medium;
+          color: #1b263b;
+          margin: 5px 20px 20px 0px;
+        }
+  
+        .PQRSF-form-subtitles-sub{
+          font-size: small;
+          color: #000;
+          margin: 5px 20px 20px 0px;
+        }
+        .div-boxes-pqrsf{
+          width: 80%;
+          margin:5px 5px 15px 0px;
+        }
+      }
+  
+      .div-form-pqrsf{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 5px;
+  
+        .subdiv-form-pqrsf{
+          align-items: center;
+          display: flex;
+        }
+      }
+  
+      .div-send-pqrsf{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+      }
+  
+      .buttom-send-pqrsf{
+        margin-left: 0px;
+        background-color: #1b263b;
+        color: #fff;
+        width: 150px;
+        align-self: center;
+      }
+  
+      .textfield{
+        margin: 5px 10px;
+      }
+  
+      .MuiInputBase-root div {
+        padding: 10px !important;
+      }
+  
+      .MuiInputBase-root {
+        width: 350px !important;
+      }
+  
+      .MuiFormControl-root {
+        margin-left: 10px;
+      }
+  
+      .div-form-pqrsf-1{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+  
+        .subdiv-form-pqrsf{
+          margin: 5px;
+          align-items: center;
+          display: flex;
+          flex-wrap: wrap;
+        }
+  
+        .disp-movi-doc{
+          margin-left: 8px;
+        }
+      }
+  
+      .editor{
+        margin: 20px 0px;
+        padding: 10px;
+        width: 88%;
+      }
+    }
+  }
+  
+  .MuiPaper-root{
+    max-width: 0px;
+    left: 305px;
+  }
+  
+  @media screen and (max-width: 768px){
+    
+  .PQRSF {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    .PQRSF-Form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      padding: 30px;
+  
+      .PQRSF-Form-content {
+        width: 100%;
+        margin-top: 1vw;
+  
+        .PQRSF-Form-content-title {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+  
+          .PQRSF-Form-content-title-label {
+            font-size: x-large;
+            color: #1b263b;
+            font-weight: 700;
+            margin: 5px 20px 5px 7vw;
+          }
+        }
+  
+        .PQRSF-form-subtitles {
+          font-size: medium;
+          color: #1b263b;
+          margin: 5px 20px 20px 0px;
+        }
+  
+        .PQRSF-form-subtitles-sub{
+          font-size: small;
+          color: #000;
+          margin: 5px 20px 20px 0px;
+        }
+        .div-boxes-pqrsf{
+          width: 80%;
+          margin:5px 5px 15px 0px;
+        }
+      }
+  
+      .div-form-pqrsf{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 5px;
+  
+        .subdiv-form-pqrsf{
+          align-items: center;
+          display: flex;
+          flex-wrap: wrap;
+        }
+      }
+  
+      .div-send-pqrsf{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        justify-content: center;
+      }
+  
+      .buttom-send-pqrsf{
+        margin-left: 0px;
+        background-color: #1b263b;
+        color: #fff;
+        width: 150px;
+        align-self: center;
+      }
+  
+      .textfield{
+        margin: 5px 10px;
+      }
+  
+      .MuiInputBase-root div {
+        padding: 10px !important;
+      }
+  
+      .MuiInputBase-root {
+        width: 230px !important;
+      }
+  
+      .MuiFormControl-root {
+        margin-left: 10px;
+      }
+  
+      .div-form-pqrsf-1{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+  
+        .subdiv-form-pqrsf{
+          margin: 5px;
+          align-items: center;
+          display: flex;
+          flex-wrap: wrap;
+  
+          .disp-movi-name{
+            margin-bottom: 5px;
+          }
+  
+          .disp-movi-doc{
+            margin-left: 0px;
+            margin-top: 5px;
+          }
+        }
+      }
+  
+      .editor{
+        margin: 20px 0px;
+        padding: 10px;
+        width: 88%;
+      }
+    }
+  }
+  }

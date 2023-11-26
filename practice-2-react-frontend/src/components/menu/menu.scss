@@ -25,11 +25,11 @@
           transition: background-color 0.3s;
   
           &:hover {
-            color: rgb(140, 140, 214);
+            color: rgb(159, 159, 160);
           }
   
           &:active {
-            color: #291f5a;
+            color: #78787a;
             font-weight: 700;
           }
         }
@@ -139,7 +139,7 @@
             font-weight: bold;
   
             &:hover {
-              color: blue;
+              color: rgb(139, 139, 139);
               background-color: none;
             }
           }
