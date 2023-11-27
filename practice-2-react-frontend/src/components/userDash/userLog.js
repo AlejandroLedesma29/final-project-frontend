@@ -14,6 +14,8 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {  Modal } from 'antd';
+import { UserOutlined, SettingOutlined, MenuFoldOutlined, MenuUnfoldOutlined, ExclamationCircleOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 
 const avatars = require.context('../../assets/images/avatars', false, /\.(png|jpe?g|svg)$/);
 
@@ -22,12 +24,13 @@ const UserLog = () => {
   const token = localStorage.getItem('token');
   const [menuVisible, setMenuVisible] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userDocument, setUserDocument] = useState(null);
   const [selectedOption, setSelectedOption] = useState('Perfil');
   const [userData, setUserData] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [showDeactivateAlert, setShowDeactivateAlert] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
-  const [userDocument, setUserDocument] = useState(null);
+  
 
   const handleMenuClick = (option) => {
     setSelectedOption(option);
@@ -42,6 +45,29 @@ const UserLog = () => {
     }
   };
 
+  const handleCancelAccount = async () => {
+    Modal.confirm({
+      title: '¿Estás seguro de que deseas cancelar tu cuenta?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Esta acción no se puede deshacer.',
+      async onOk() {
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            console.error('No se encontró el token de acceso.');
+            return;
+          }
+
+          await handleDeactivateAccount(token);
+        } catch (error) {
+          console.error('Error al cancelar la cuenta:', error.message);
+        }
+      },
+      onCancel() {
+        console.log('Operación de cancelación de cuenta cancelada');
+      },
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +98,6 @@ const UserLog = () => {
 
   useEffect(() => {
     if (redirecting && !showDeactivateAlert) {
-      // Realizar acciones necesarias después de la redirección, si es necesario
       console.log('Redirección completada');
     }
   }, [redirecting, showDeactivateAlert]);
@@ -162,12 +187,14 @@ const UserLog = () => {
             style={{ cursor: 'pointer' }}
           />
         </div>
-        <Button className="button-logout" onClick={handleLogout}><LogoutIcon /></Button>
+        <div className="button-logout">
+          <Button  onClick={handleLogout}><LogoutIcon /></Button>
+        </div>
     </div>
 
     <div className='content-container'>
       <div className='slide-container' style={{ width: getContainerWidth() }}>
-        {(window.innerWidth > 650 || menuVisible) && ( // Renderiza los iconos si la pantalla es lo suficientemente grande o si el menú está activo
+        {(window.innerWidth > 650 || menuVisible) && ( 
           <div className="icon-container">
             {menuOptions.map((option) => (
               <div className={`icon ${selectedOption === option.label ? 'selected' : ''}`} key={option.label} onClick={() => handleMenuClick(option.label)}>
@@ -223,48 +250,16 @@ const UserLog = () => {
             <div className='configuration-panel'>
               <h2>Configuración de la cuenta</h2>
               <h4>Aqui puedes acceder a la configuracion de tu cuenta</h4>
-              <Button  className="password-button" variant="contained" onClick={handleOpenDialog}>
+              <Button  className="password-button" variant="contained" onClick={handleCancelAccount}>
                 Cambiar contraseña
               </Button>
-              <Button className="deactive-button"  variant="contained" onClick={handleOpenDialog}>
+              <Button className="deactive-button"  variant="contained" onClick={handleCancelAccount}>
                 Cancelar cuenta
               </Button>
-              <Dialog
-                open={openDialog}
-                onClose={handleCloseDialog}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">{"¿Seguro que quieres cancelar tu cuenta?"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Esta acción no se puede deshacer. ¿Estás seguro de cancelar la cuenta?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleCloseDialog}>Cancelar</Button>
-                  <Button onClick={handleDeactivateAccount} autoFocus>
-                    Sí, estoy seguro
-                  </Button>
-                </DialogActions>
-              </Dialog>
-              <Dialog
-                open={showDeactivateAlert}
-                onClose={() => setShowDeactivateAlert(false)}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">{"Cuenta desactivada correctamente"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Tu cuenta ha sido desactivada. Serás redirigido en breve.
-                  </DialogContentText>
-                </DialogContent>
-              </Dialog>
+            
             </div>
           )}
         </div>
-      
       </div>
     </div>
   );

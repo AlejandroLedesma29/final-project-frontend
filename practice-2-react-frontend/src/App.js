@@ -8,6 +8,7 @@ import Register from './components/register/register.js'
 import Admin from './components/adminDash/adminDash.js'
 import UserLog from './components/userDash/userLog.js'
 import Pqrsf from './components/PQRSF/PQRSF'
+import ActivationPage from './components/activateAcount/activateAcount.js';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/userDash" element={<UserLog/>} />
           <Route path="/help" element={<Pqrsf/>} />
+          <Route path="/activate/:activationToken" element={<ActivationPage/>} />
         </Routes>
       </div>
     </Router>

@@ -27,7 +27,13 @@ body{
     align-items: center;
     background-color: #000000;
     padding: 10px 20px;
-  
+    .button-logout{
+      Button{
+          background-color: #000000;
+          color: white;
+          border: none;
+      }
+    }
     ul {
       padding: 0;
       display: flex;

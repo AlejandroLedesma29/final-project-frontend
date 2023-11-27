@@ -3,6 +3,7 @@ const user_routes_access = require("./userRoutes");
 const auth_routes_access = require("./authRoutes");
 const product_routes_access = require("./productRoutes");
 const category_routes_access = require("./categoryRoutes");
+const pqrsf_routes_access = require("./pqrsfRoutes");
 const routes = express. Router();
 const routes_system = (app) => {
     /* http://localhost:5000/api/v1 */
@@ -11,6 +12,7 @@ const routes_system = (app) => {
     routes.use("/", auth_routes_access);
     routes.use("/product", product_routes_access);
     routes.use("/category", category_routes_access);
+    routes.use("/sendpqrsf", pqrsf_routes_access);
 };
 
 module.exports = routes_system;

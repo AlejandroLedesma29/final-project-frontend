@@ -1,0 +1,34 @@
+.div-inputs{
+    margin: 5px;
+}
+
+.text-field-books{
+    margin: 5px !important;
+}
+
+.div-inputs-photos{
+    margin: 10px;
+    align-items: flex-start;
+    display: flex;
+
+    label{
+        font-size: small;
+    }
+}
+
+.button-add-product{
+    button{
+        margin-left: 10px;
+    }
+}
+
+.select-filter-category{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+    label{
+        font-size: small;
+        margin: 5px;
+    }
+}

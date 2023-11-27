@@ -7,10 +7,8 @@ const path = require('path');
 const accountSid = process.env.SID;
 const authToken = process.env.tokenTwilio;
 const client  = require('twilio')(accountSid, authToken);
-
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-
+const nodemailer = require("nodemailer");
+const transporter = require("./../config/mailer")
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.resolve(__dirname, '../../../practice-2-react-frontend/src/assets/images/avatars'));
@@ -19,7 +17,6 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-
 
 
 const upload = multer({ storage: storage });
@@ -81,22 +78,22 @@ const register = async (req, res) => {
       const userStorage = await user.save();
       const activationLink = `http://localhost:3001/api/v1/user/activate/${userStorage._id}`;
       console.log(userStorage.email);
-      const msg = {
-        to: userStorage.email,
-        from: 'juliana.ledesmaz@autonoma.edu.co',
-        subject: 'Activa tu cuenta',
-        text: `Haz clic en el siguiente enlace para activar tu cuenta: ${activationLink}`,
-        html: `<p>Haz clic en el siguiente enlace para activar tu cuenta:</p><a href="${activationLink}">${activationLink}</a>`,
-      };
 
-      sgMail
-        .send(msg)
-        .then(() => {
-          console.log('Email sent')
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+      const mailoptions = {
+        from: '"Activa tu cuenta" <ledesmazja2@gmail.com>', 
+        to: userStorage.email,
+        subject: "Activa tu cuenta", 
+        text: `Ingresa al siguiente link para activar tu cuenta:${activationLink} `
+      }
+
+      await transporter.sendMail(mailoptions, (error, info) => {
+        if (error){
+          console.log(error.menssage);
+        } else {
+          console.log("Email enviado");
+        }
+      }
+      );
 
       client.messages.create({
         body: `Haz clic en el siguiente enlace para activar tu cuenta: ${activationLink}`,
