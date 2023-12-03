@@ -19,14 +19,14 @@ const Footer = () => {
               <h2>Ubicación</h2>
             <div className="direction">
               <div><h5>¡ Visítanos !</h5></div>
-              <a href="https://www.google.com/maps/place/Portal+de+la+Florida/@5.0318045,-75.4847436,3a,75y,305.02h,78.2t/data=!3m6!1e1!3m4!1s7HeHZ9gYZWONFpSOzf1twQ!2e0!7i13312!8i6656!4m16!1m8!3m7!1s0x8e476508232bad0d:0xadcbf195699df3e!2sLa+Florida,+Villamar%C3%ADa,+Caldas!3b1!8m2!3d5.0311981!4d-75.4818806!16s%2Fg%2F11q25c8qnl!3m6!1s0x8e4765a7f7df21f1:0x1e6a013b302953a5!8m2!3d5.031207!4d-75.4818755!10e5!16s%2Fg%2F11dymcd65r?hl=es-ES&entry=ttu" target="_blank" rel="noopener noreferrer"><img src={locationicon} alt="Location Icon" className="location-icon"/>
+              <a href="https://maps.app.goo.gl/p5i2qEwZmrMYmvjH7" target="_blank" rel="noopener noreferrer"><img src={locationicon} alt="Location Icon" className="location-icon"/>
               </a>
               </div>
             </div>
           </Grid>
           <Grid item xs={12} sm={12} md={3}>
             <div className="privacy-container">
-              <h2>Contacto</h2>
+          <h2>Contacto</h2>
               <h5>fullhouse@gmail.com</h5>
               
               <Button variant="contained" className="button-politics" onClick={() => navigate("/help")}>PQRSF</Button>

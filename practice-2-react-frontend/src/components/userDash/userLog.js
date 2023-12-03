@@ -8,6 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { jwtDecode } from 'jwt-decode';
+import logo from '../../assets/images/Logo.png';
 import './userLog.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
@@ -172,6 +173,9 @@ const UserLog = () => {
   return (
     <div className="user-log-container">
     <div className="menu-user">
+      <a onClick={() => navigate('/')}>
+        <img className="uamLogo" src={logo} alt="Logo Full House Shoes" style={{ cursor: 'pointer' }}/>
+      </a>
       <button className="toggle-button" onClick={toggleMenu}>
         {menuVisible ? <MenuOpenIcon /> : <MenuIcon/>}
       </button>
@@ -208,7 +212,7 @@ const UserLog = () => {
 
         <div className='content-user'>
           {selectedOption === 'Perfil' && (
-            <div>
+            <div className='data-user'>
             <h1>¡ Bienvenido, {userData?.firstname} !</h1>
 
             <img

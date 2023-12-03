@@ -32,31 +32,32 @@ import { useNavigate } from "react-router-dom";
 const posts = [
   {
     _id: "1",
-    title: "Air Jordan SB",
-    subtitle: "¡Lo último de moda!",
-    Description: "¡Los Air Jordan SB combinan la elegancia de los Air Jordan con la funcionalidad de los Nike SB. Diseñados para los amantes del skate y el baloncesto, estos tenis ofrecen un rendimiento superior y un estilo inigualable!",
-    avatar: images.post1,
+    title: "Adidas Forum Bad Bunny",
+    subtitle: "¡Colaboración de Adidas con BaddBunny!",
+    Description: "¡Los Adidas Forum Bad Bunny son un tributo al icónico artista y a su estilo inconfundible. Estos tenis combinan a la perfección la herencia clásica de Adidas con el espíritu creativo de Bad Bunny!",
+    avatar: images.post4,
   },
   {
     _id: "2",
+    title: "Jordan Retro Travis Scott Purple",
+    subtitle: "¡Tuyos si eres alguien exclusivo!",
+    Description: "¡Los Jordan 4 Retro Travis Scott Purple son una obra maestra de la colaboración entre Jordan Brand y el famoso rapero Travis Scott. Estos tenis destacan por su diseño único y colores vibrantes que te harán destacar en cualquier ocasión!",
+    avatar: images.post5,
+  },
+  
+  {
+    _id: "3",
     title: "Nike SB Dunk Low",
     subtitle: "♥♥ Para que disfrutes San Valentin ♥♥",
     Description: "¡Descubre el estilo clásico reinventado con los Nike SB Dunk Low. Con su diseño atemporal y comodidad inigualable, estos tenis son la elección perfecta para expresar tu individualidad y tu amor por el skateboarding!",
     avatar: images.post2,
   },
   {
-    _id: "3",
-    title: "Adidas Forum Bad Bunny",
-    subtitle: "¡Colaboración de Adidas con BaddBunny!",
-    Description: "¡Los Adidas Forum Bad Bunny son un tributo al icónico artista y a su estilo inconfundible. Estos tenis combinan a la perfección la herencia clásica de Adidas con el espíritu creativo de Bad Bunny. Perfectos para aquellos que buscan destacar en la multitud!",
-    avatar: images.post4,
-  },
-  {
     _id: "4",
-    title: "Jordan Retro Travis Scott Purple",
-    subtitle: "¡Tuyos si eres alguien exclusivo!",
-    Description: "¡Los Jordan 4 Retro Travis Scott Purple son una obra maestra de la colaboración entre Jordan Brand y el famoso rapero Travis Scott. Estos tenis destacan por su diseño único y colores vibrantes que te harán destacar en cualquier ocasión!",
-    avatar: images.post3,
+    title: "Air Jordan SB",
+    subtitle: "¡Lo último de moda!",
+    Description: "¡Los Air Jordan SB combinan la elegancia de los Air Jordan con la funcionalidad de los Nike SB. Diseñados para los amantes del skate y el baloncesto, estos tenis ofrecen un rendimiento superior y un estilo inigualable!",
+    avatar: images.post1,
   },
 ];
 
@@ -70,6 +71,7 @@ export const MenuReact = () => {
     setSelectedPost(post);
     setOpen(true);
   };
+  
 
   const [cartItems, setCartItems] = useState([]);
   const addToCart = (product) => {
@@ -96,6 +98,7 @@ export const MenuReact = () => {
       return prevLikedProducts;
     });
   };
+
   
 
   const handleClose = () => setOpen(false);
@@ -137,9 +140,8 @@ export const MenuReact = () => {
     };
   }, []);
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -171,16 +173,7 @@ export const MenuReact = () => {
               {posts.length > 0 ? (
                 posts.map((post) => (
                   <div className="slider-content">
-                    <img src={post.avatar} className="slidePic" />
-                    <div className="slider-title">
-                      <h2>{post.title}</h2>
-                    </div>
-                    <div className="slider-subtitle">
-                      <h3>{post.subtitle}</h3>
-                    </div>
-                    <Button className="button-mas-info" onClick={() => handleOpen(post._id)}>
-                      ¡Más información!
-                    </Button>
+                    <img src={post.avatar} className="slidePic" onClick={() => handleOpen(post._id)} style={{cursor: 'pointer'}}/>
                   </div>  
                 ))
               ) : (
@@ -191,12 +184,23 @@ export const MenuReact = () => {
         </div>
       </div>
 
-      <div className="products1" id="products1">
-        <Favorites favoritesItems={likedProducts} />
-      </div>
+    <div className="products1" id="products1">
+    <h2 className="trend-title">Productos Tendencia</h2>
+      <Box className="product-container">
+        {posts.map((post) => (
+          <div key={post._id} className="product-thumbnail" onClick={() => handleOpen(post._id)}>
+            <img src={post.avatar} alt={post.title} />
+            <p>{post.title}</p>
+          </div>
+        ))}
+      </Box>
+    </div>
+
+
       <div className="contact1" id="contact1">
         <ShoppingCar cartItems={cartItems} />
       </div>
+      
       <div className="footer">
       <Footer/>
       </div>

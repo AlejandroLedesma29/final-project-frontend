@@ -117,7 +117,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
+      background-color: #000000;
+      padding: 10px 20px; 
   
       #menu-list.show-menu {
         width: 89%;
@@ -184,5 +185,28 @@
           position: absolute;
         }
       }
+    }
+  }
+
+  .content-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .data-user{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: center;
+    }
+    @media (max-width: 650px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar-profile{
+      border-radius: 100%;
+      margin-bottom: 10px;
+      width: 300px;
+      height: auto;
     }
   }

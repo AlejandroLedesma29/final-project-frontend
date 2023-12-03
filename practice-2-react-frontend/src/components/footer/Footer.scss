@@ -27,7 +27,7 @@
         flex-direction: row;
         justify-content: flex-start;
         h5 {
-          margin-top: auto;
+          margin-top: 0px;
           color: rgb(156, 158, 160);
         }
         .location-icon {
@@ -105,6 +105,10 @@
       font-size: large;
       align-items: center;
       margin: 0px 20px 0px 20px;
+      h5 {
+        margin-top: 0px;
+        color: rgb(156, 158, 160);
+      }
       h2 {
         text-align: center;
       }

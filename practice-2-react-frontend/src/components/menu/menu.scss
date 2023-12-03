@@ -1,3 +1,10 @@
+.menu ul li a:hover {
+  color: #8b8b8b;
+  &:hover {
+    color: rgb(247, 244, 244);
+  }
+}
+
 .menu {
     display: flex;
     justify-content: space-between;
@@ -21,7 +28,7 @@
   
       li {
         margin-right: 20px;
-  
+        color: gray;
         a {
           text-decoration: none;
           font-size: 17px;
@@ -78,12 +85,6 @@
       padding-left: 80px;
       padding-right: 40px;
       
-  
-      img[src="../assets/images/Logos_UAM-08.png"] {
-        max-width: 70px;
-        height: auto;
-        margin-right: 3%;
-      }
     }
     
   
@@ -110,10 +111,7 @@
         width: auto;
         height: 250px;
       }
-  
-      .uamLogo {
-        display: none;
-      }
+
   
       .menu-toggle {
         background: none;
@@ -161,3 +159,21 @@
     }
   }
 
+.links-menu{
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 400;
+  font-variant: contextual;
+  color: white;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    color: rgb(159, 159, 160);
+  }
+
+  &:active {
+    color: #78787a;
+    font-weight: 700;
+  }
+} 

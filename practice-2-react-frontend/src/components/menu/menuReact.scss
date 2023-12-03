@@ -4,11 +4,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-  width: 100%;
-  height: 100%;
-}
-
 
 
 
@@ -27,10 +22,9 @@ body {
     justify-items: start;
 
     .slick-list {
-      width: 80vh;
+      width: 120vh;
       display: grid;
       justify-content: center;
-      justify-items: start;
     }
 
     .slider-main {
@@ -74,107 +68,72 @@ body {
       }
     }
 
-    ul.slick-dots {
-      position: absolute;
-      bottom: 50px;
-      display: block;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      text-align: center;
-    }
 
     button.slick-prev:before,
     button.slick-next:before {
-      font-size: 30px;
-      position: absolute;
       color: #333;
-      z-index: 2;
-      background: transparent;
-    }
-
-    button.slick-prev {
-      left: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    button.slick-next {
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    @media (max-width: 1230px) {
-      button.slick-prev {
-        left: 5%;
-      }
-      button.slick-next {
-        right: 6%;
-      }
     }
   }
 
   @media (max-width: 950px) {
+    height: 465px;
     .slider-container {
-      width: 80%;
+      width: 100%;
       display: grid;
       justify-content: center;
       justify-items: start;
+  
+      .slick-list {
+        width: 75vh;
+        display: grid;
+        justify-content: center;
+      }
+  
       .slider-main {
         .slider-content {
-          .slick-list {
-            width: 80vw;
-            display: grid;
-            justify-content: center;
-            justify-items: start;
-          }
-      
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+  
           .slidePic {
-            display: inline-table;
-            height: auto;
-            width: 50%;
-            margin: 5%;
-            box-shadow: 15px 10px 10px rgba(0, 0, 0, 0.333);
+            width: 70%;
+            margin: 0 auto; 
           }
+  
           .slider-title {
             color: black;
   
             h2 {
-              justify-content: center;
               display: flex;
-              margin-left: 18px;
-              margin-top: 10px;
+              margin-left: 60px;
               font-weight: bold;
               font-variant: contextual;
+              text-align: center;
               color: #333;
             }
           }
+  
           .slider-subtitle {
             color: black;
             margin-left: 60px;
             margin-bottom: 10px;
   
             h3 {
-              justify-content: center;
               display: flex;
               margin: 0;
               font-weight: lighter;
               font-variant: contextual;
-              text-align: center;
-              margin-left: 30px;
               color: #333;
             }
           }
         }
       }
-      ul.slick-dots {
-        visibility: hidden;
-      }
+  
+  
       button.slick-prev:before,
       button.slick-next:before {
-        display: none;
+        color: #333;
       }
     }
   }
@@ -182,48 +141,51 @@ body {
 
 
 .products1 {
-  display: flow-root;
   height: auto;
   background: #f6f5f7;
   color: #333;
   padding: 20px; 
-  .cards {
+  text-align: center;
+  margin-left: 50px;
+
+  .product-container {
+    border: 1px solid #ddd; 
+    border-radius: 12px; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
     display: flex;
-    margin-top: 15%;
-    margin-left: 5%;
-
-    .infocard {
-      margin: 5px;
-      box-shadow: -15px 10px 10px rgba(0, 0, 0, 0.333);
-      height: fit-content;
-      .css-46bh2p-MuiCardContent-root {
-        padding: 16px;
-        background: linear-gradient(180deg, #fdfdfd, #a9a9a9);
-      }
-    }
-
-    .subclassinfo {
-      background-color: #f6f5f7;
-      padding: 20px;
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-direction: row-reverse;
-      margin-left: 20pc;
-      margin-top: -15pc;
-    }
-
-    .PQRScard {
-      box-shadow: -15px 10px 10px rgba(0, 0, 0, 0.333);
-      margin: 5px;
-      height: fit-content;
-      .css-46bh2p-MuiCardContent-root {
-        padding: 16px;
-        background: linear-gradient(180deg, #fdfdfd, #a9a9a9);
-      }
-    }
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
+
+  .trend-title {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+  }
+  
+.product-thumbnail {
+  width: 300px; 
+  margin-bottom: 20px; 
+  cursor: pointer;
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  margin-right: 10px; 
+  margin-bottom: 10px; 
+  transition: transform 0.2s ease-in-out; 
+  background-color: #fff;
+}
+
+.product-thumbnail img {
+  max-width: 100%;
+  height: auto;
+  display: block; 
+}
+
+.product-thumbnail:hover {
+  transform: scale(1.05); 
+}
+
 }
 
 

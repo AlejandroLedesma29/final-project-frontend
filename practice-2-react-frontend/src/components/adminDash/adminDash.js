@@ -14,7 +14,7 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Products from './productsDash/productsDash'
+import Products from '../productsDash/productsDash'
 
 const avatars = require.context('../../assets/images/avatars', false, /\.(png|jpe?g|svg)$/);
 
@@ -56,6 +56,20 @@ function Admin (){
         />
       ),
     },
+    {
+      title: "Acciones",
+      dataIndex: "actions",
+      key: "actions",
+      render: (text, record) => (
+        <Button
+          type="danger"
+          className="delete-button"
+          onClick={() => handleDeleteCategory(record._id)}
+        >
+          Eliminar
+        </Button>
+      ),
+    }
   ];
   
     const menuItems = [
@@ -81,7 +95,9 @@ function Admin (){
       const [selectedOption, setSelectedOption] = useState('Perfil');
       const [menuVisible, setMenuVisible] = useState(false);
       const [CategorydeleteModalVisible, setCategoryDeleteModalVisible] = useState(false);
+      const [UserdeleteModalVisible, setUserDeleteModalVisible] = useState(false);
       const [CategoryToDeleteId, setCategoryToDeleteId] = useState(null);
+      const [userToDeleteId, setUserToDeleteId] = useState(null);
       const [categoryForm, setCategoryForm] = useState({
         name: "",
         description: "",
@@ -355,7 +371,20 @@ function Admin (){
     setCategoryToDeleteId(categoryId);
     setCategoryDeleteModalVisible(true);
   };
+
+  const showDeleteModalUser = (categoryId) => {
+    setUserToDeleteId(categoryId);
+    setUserDeleteModalVisible(true);
+  };
   
+  const handleDeleteUser= async (userId) => {
+    try {
+      showDeleteModalUser(userId);
+    } catch (error) {
+      console.error("Error en la solicitud:", error.message);
+    }
+  };
+
   const handleDeleteCategory = async (categoryId) => {
     try {
       showDeleteModalCategory(categoryId);
@@ -382,14 +411,44 @@ function Admin (){
   };
 
 
+  const handleUserConfirmDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/api/v1/user/${userToDeleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+        getUserData();
+        setUserDeleteModalVisible(false);
+    } catch (error) {
+      console.error("Error en la solicitud:", error.message);
+    }
+  };
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refresh");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
+    const decodedToken = jwtDecode(token);
+    const userRole = decodedToken?.role;
+    if (userRole === "user") {
+      navigate("/");
+      return;
+    }
+
     getUserData();
     getCategoriesrData();
     getAdminrData();
@@ -518,7 +577,7 @@ function Admin (){
 
         <div className='content-user'>
           {selectedOption === 'Perfil' && (
-            <div>
+            <div className='data-user'>
             <h1>¡ Bienvenido, {AdminData?.firstname} !</h1>
 
             <img
@@ -591,7 +650,7 @@ function Admin (){
         {selectedOption === 'Productos' && (
             <div className="products-admin">
               <h1>Productos</h1>
-              <Products />
+              <Products/>
             </div>
         )}
         </div>
@@ -621,7 +680,31 @@ function Admin (){
         >
           {createCategoryModalContent}
         </Modal>
+      
+        <Modal
+          title="Confirmar Eliminación"
+          open={UserdeleteModalVisible}
+          onOk={handleUserConfirmDelete}
+          onCancel={() => setCategoryDeleteModalVisible(false)}
+          okText="Eliminar"
+          cancelText="Cancelar"
+        >
+          <p>
+            ¿Estás seguro de que deseas eliminar esta categoria?
+          </p>
+        </Modal>
 
+        <Modal
+          title="Crear Categoría"
+          visible={createCategoryVisible}
+          onOk={() => {
+            console.log("Valores del formulario:", categoryForm);
+            handleSaveCategory();
+          }}
+          onCancel={hideCreateCategoryModal}
+        >
+          {createCategoryModalContent}
+        </Modal>
     </div>
   );
 };

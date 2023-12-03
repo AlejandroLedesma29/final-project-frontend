@@ -42,13 +42,13 @@ const MenuComponent = () => {
       </button>
       <ul id="menu-list">
         <li>
-          <a href="#flex1">Cátalogo</a>
+          <a className= "links-menu" href="">Cátalogo</a>
         </li>
         <li>
-          <a href="#products1">Marcas</a>
+          <a className= "links-menu"  href="">Marcas</a>
         </li>
         <li>
-          <a href="#contact1">Promociones</a>
+          <a className= "links-menu"  href="">Promociones</a>
         </li>
       </ul>
       {userId ? (

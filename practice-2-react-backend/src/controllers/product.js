@@ -66,10 +66,6 @@ const createProduct = async (req, res) => {
 };
 
 const listProducts = async (req, res) => {
-    if (req.user.role !== "admin") {
-        return res.status(403).json({ message: "No tienes permiso para acceder a esta información" });
-    }
-
     try {
         const data = await product_model.find();
         res.json(data);

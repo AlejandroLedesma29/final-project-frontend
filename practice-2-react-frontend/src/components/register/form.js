@@ -444,7 +444,7 @@ export const RegisterForm = () => {
                             
 
             <div className="button-container">
-              <Button className="cancel-button" onClick={() => window.location.replace("/")}>
+              <Button className="register-button" onClick={() => window.location.replace("/")}>
                 Cancelar
               </Button>
               <Button  className="register-button" htmlType="submit">

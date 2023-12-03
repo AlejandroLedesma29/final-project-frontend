@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Frank from '../../assets/images/Frank.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('El correo es requerido'),
@@ -46,6 +47,20 @@ export const LoginForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+  
+    if (token) {
+      const rol = getRolFromToken(token);
+      if (rol === 'user') {
+        navigate('/');
+      } else {
+        navigate('/admin');
+      }
+    }
+  }, [navigate]);
+
 
   const onSubmit = async (values) => {
     try {
@@ -107,8 +122,13 @@ export const LoginForm = () => {
 
   return (
     <div className="body-login">
+      <a href='/' className="back-landing"><ArrowBackIcon/></a>
       <div>
-        <img className="logo-full" src={Frank} alt="Logo Full House Shoes" />
+      
+        <a href='/'>
+          <img className="logo-full" src={Frank} alt="Logo Full House Shoes" />
+        </a>
+
       </div>
       <div className="sign-in-container">
         <div className="sign-in-box">

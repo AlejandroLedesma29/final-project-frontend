@@ -138,7 +138,7 @@ const login = async (req, res) => {
         res.status (400).send({ msg: error.message });
     }
 }
-
+  
 const refreshAccessToken = (req, res) => {
   const { token } = req.body;
   if (!token) res.status(400).send({ msg: "Token requerido" });
