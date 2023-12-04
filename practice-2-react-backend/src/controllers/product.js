@@ -40,7 +40,10 @@ const createProduct = async (req, res) => {
                 description,
                 active,
                 available,
-                category
+                category, 
+                brand, 
+                price,
+                model
             } = req.body;
 
             const product = new product_model({
@@ -49,6 +52,9 @@ const createProduct = async (req, res) => {
                 active,
                 available,
                 category, 
+                brand, 
+                price,
+                model
             });
 
              for (let i = 1; i <= 3; i++) {

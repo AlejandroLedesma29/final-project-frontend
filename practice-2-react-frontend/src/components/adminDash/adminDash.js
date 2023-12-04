@@ -13,7 +13,7 @@ import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Products from '../productsDash/productsDash'
 
 const avatars = require.context('../../assets/images/avatars', false, /\.(png|jpe?g|svg)$/);
@@ -72,10 +72,6 @@ function Admin (){
     }
   ];
   
-    const menuItems = [
-        { id: 1, label: "Listar Usuarios", path: "/admin/listar-usuarios" },
-        { id: 2, label: "Editar Usuarios", path: "/admin/editar-usuarios" },
-      ];
       const navigate = useNavigate();
       const [createCategoryVisible, setCreateCategoryVisible] = useState(false);
       const [visible, setVisible] = useState(false);
@@ -352,8 +348,7 @@ function Admin (){
     { label: 'Perfil', icon: <AccountCircleIcon /> },
     { label: 'Usuarios', icon: <SupervisedUserCircleIcon /> },
     { label: 'Categorías', icon: <GroupWorkIcon /> },
-    { label: 'Productos', icon: <ShoppingCartIcon /> },
-    { label: 'Config.', icon: <BuildCircleIcon /> }
+    { label: 'Productos', icon: <MonetizationOnIcon /> },
   ];
 
   const toggleMenu = () => {
@@ -367,6 +362,7 @@ function Admin (){
       return menuVisible ? '15%' : '5%';
     }
   };
+
   const showDeleteModalCategory = (categoryId) => {
     setCategoryToDeleteId(categoryId);
     setCategoryDeleteModalVisible(true);
@@ -667,7 +663,7 @@ function Admin (){
           <p>
             ¿Estás seguro de que deseas eliminar esta categoria?
           </p>
-        </Modal>
+      </Modal>
 
         <Modal
           title="Crear Categoría"

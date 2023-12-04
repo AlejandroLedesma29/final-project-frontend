@@ -1,0 +1,59 @@
+.products-form-content{
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
+}
+.products-container{
+    padding: 20px;
+}
+.custom-input-style {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Agregamos un estilo adicional para resaltar el nombre del archivo seleccionado */
+  .custom-input-style:hover,
+  .custom-input-style:active,
+  .custom-input-style:focus {
+    border-color: #cacaca;
+    box-shadow: 0 0 0 2px rgba(69, 82, 94, 0.2);
+  }
+
+  .selected-photo-preview {
+    margin-top: 10px;
+  }
+  
+  .selected-photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+.category-register{
+    width: 14vh;
+}
+.register-product-button{
+    background-color: #afafaf; 
+    color: white;
+    border: none;
+    width: 100%;
+    height: 2.5rem; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem; 
+    &:hover {
+        color: gray !important;;
+    }
+}

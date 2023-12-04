@@ -1,65 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Fab from '@mui/material/Fab';
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./menuReact.scss";
-import avatar from "../../assets/images/avatar.png";
-import logo from "../../assets/images/Logo.png";
-import Button from "@mui/material/Button";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Box from "@mui/material/Box";
-
+import axios from "axios";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { images } from "../../assets";
-import ShoppingCar from "../shoppingCar/ShoppingCar"
 import Footer from "../footer/Footer";
-import Favorites from "../favorites/Favorites"
 import MenuComponent from "./menu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faHome,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
-
-
-
-
-const posts = [
-  {
-    _id: "1",
-    title: "Adidas Forum Bad Bunny",
-    subtitle: "¡Colaboración de Adidas con BaddBunny!",
-    Description: "¡Los Adidas Forum Bad Bunny son un tributo al icónico artista y a su estilo inconfundible. Estos tenis combinan a la perfección la herencia clásica de Adidas con el espíritu creativo de Bad Bunny!",
-    avatar: images.post4,
-  },
-  {
-    _id: "2",
-    title: "Jordan Retro Travis Scott Purple",
-    subtitle: "¡Tuyos si eres alguien exclusivo!",
-    Description: "¡Los Jordan 4 Retro Travis Scott Purple son una obra maestra de la colaboración entre Jordan Brand y el famoso rapero Travis Scott. Estos tenis destacan por su diseño único y colores vibrantes que te harán destacar en cualquier ocasión!",
-    avatar: images.post5,
-  },
-  
-  {
-    _id: "3",
-    title: "Nike SB Dunk Low",
-    subtitle: "♥♥ Para que disfrutes San Valentin ♥♥",
-    Description: "¡Descubre el estilo clásico reinventado con los Nike SB Dunk Low. Con su diseño atemporal y comodidad inigualable, estos tenis son la elección perfecta para expresar tu individualidad y tu amor por el skateboarding!",
-    avatar: images.post2,
-  },
-  {
-    _id: "4",
-    title: "Air Jordan SB",
-    subtitle: "¡Lo último de moda!",
-    Description: "¡Los Air Jordan SB combinan la elegancia de los Air Jordan con la funcionalidad de los Nike SB. Diseñados para los amantes del skate y el baloncesto, estos tenis ofrecen un rendimiento superior y un estilo inigualable!",
-    avatar: images.post1,
-  },
-];
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+const avatars = require.context('../../assets/images/Productsphotos', false, /\.(png|jpe?g|svg)$/);
 
 export const MenuReact = () => {
   const navigate = useNavigate();
@@ -67,11 +21,34 @@ export const MenuReact = () => {
   const [open, setOpen] = React.useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const handleOpen = (post_id) => {
-    const post = posts.find((post) => post._id === post_id);
+    const post = productsData.find((post) => post._id === post_id);
     setSelectedPost(post);
     setOpen(true);
   };
-  
+  const [productsData, setProductsData] = useState([]);
+  const [productsSliderData, setProductsSliderData] = useState([]);
+  const [productsTrendsData, setProductsTrendsData] = useState([]);
+  const [productsNewsData, setProductsNewsData] = useState([]);
+
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/v1/product", {});
+
+      const Slider = response.data.filter((image) => image.category === "656ca8a350e4b79fba590341");
+      setProductsSliderData(Slider);
+
+      const Trends = response.data.filter((image) => image.category === "656c9f8a50e4b79fba59033e");
+      setProductsTrendsData(Trends);
+
+      const News = response.data.filter((image) => image.category === "656cbf4b50e4b79fba590344");
+      setProductsNewsData(News);
+
+      setProductsData(response.data);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const [cartItems, setCartItems] = useState([]);
   const addToCart = (product) => {
@@ -108,7 +85,7 @@ export const MenuReact = () => {
       const menuList = document.getElementById("menu-list");
       menuList.classList.toggle("show-menu");
     };
-
+    getProductsData();
     const handleResize = () => {
       if (window.innerWidth > 530) {
         const menuList = document.getElementById("menu-list");
@@ -139,8 +116,32 @@ export const MenuReact = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const NextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "#333" }}
+        onClick={onClick}
+      />
+    );
+  };
+  
+  const PrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "#333" }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  
   const sliderSettings = {
-    dots: false,
+    dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -151,54 +152,79 @@ export const MenuReact = () => {
       {showIcons && (
         <div className="icon-section">
           <a href="#" className="iconlist">
-            <FontAwesomeIcon icon={faHome} />
+            <HomeIcon />
           </a>
 
-          <a href="#products1" className="iconlist">
-            <FontAwesomeIcon icon={faMapMarkerAlt} />
+          <a href="#news" className="iconlist">
+            <NewReleasesIcon />
           </a>
 
-          <a href="#contact1" className="iconlist">
-            <FontAwesomeIcon icon={faBars} />
+          <a href="#trends" className="iconlist">
+            <WhatshotIcon />
           </a>
         </div>
       )}
 
       <MenuComponent/>
 
-      <div className="flex1" id="flex1">
+      <div className="home" id="home">
+      
+      <div className="split-layout">
+        <div className="left-drawer">
+          <h1 className="title-slider-main">Productos Destacados</h1>
+        </div>
+
         <div className="slider-container">
-          <div className="slider-main">
             <Slider {...sliderSettings}>
-              {posts.length > 0 ? (
-                posts.map((post) => (
-                  <div className="slider-content">
-                    <img src={post.avatar} className="slidePic" onClick={() => handleOpen(post._id)} style={{cursor: 'pointer'}}/>
-                  </div>  
+              {productsSliderData.length > 0 ? (
+                productsSliderData.map((product) => (
+                  <div className="slider-content" key={product._id}>
+                    <h1>{product.name}</h1>
+                    <img
+                      src={avatars.keys().includes(`./${product.photo1}`)
+                        ? avatars(`./${product.photo1}`)
+                        : require('../../assets/images/Frank.png')}
+                      className={`slidePic limited-size`}
+                      onClick={() => handleOpen(product._id)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </div>
                 ))
               ) : (
                 <p>No hay servicios</p>
               )}
             </Slider>
-          </div>
         </div>
       </div>
 
-    <div className="products1" id="products1">
-    <h2 className="trend-title">Productos Tendencia</h2>
+        
+      </div>
+
+    <div className="news" id="news">
+    <h1 className="trend-title">Últimas Novedades</h1>
       <Box className="product-container">
-        {posts.map((post) => (
-          <div key={post._id} className="product-thumbnail" onClick={() => handleOpen(post._id)}>
-            <img src={post.avatar} alt={post.title} />
-            <p>{post.title}</p>
+        {productsNewsData && productsNewsData.map((product) => (
+          <div key={product._id} className="product-thumbnail" onClick={() => handleOpen(product._id)}>
+            <img src={avatars.keys().includes(`./${product.photo1}`) ? avatars(`./${product.photo1}`) : require('../../assets/images/Frank.png')} alt={product.name} />
+            <p>{product.name}</p>
+            <p>Precio: ${product.price}</p>
           </div>
         ))}
       </Box>
     </div>
 
 
-      <div className="contact1" id="contact1">
-        <ShoppingCar cartItems={cartItems} />
+      <div className="trends" id="trends">
+      <h1 className="trend-title">Productos Tendencia</h1>
+        <Box className="product-container">
+          {productsTrendsData && productsTrendsData.map((product) => (
+            <div key={product._id} className="product-thumbnail" onClick={() => handleOpen(product._id)}>
+              <img src={avatars.keys().includes(`./${product.photo1}`) ? avatars(`./${product.photo1}`) : require('../../assets/images/Frank.png')} alt={product.name} />
+              <p>{product.name}</p>
+              <p>Precio: ${product.price}</p>
+            </div>
+          ))}
+        </Box>
       </div>
       
       <div className="footer">
@@ -218,39 +244,20 @@ export const MenuReact = () => {
           {selectedPost && (
             <>
             <Typography id="modal-modal-title" variant="h6" component="h2" className="title-modal">
-                {selectedPost.title}
+                {selectedPost.name}
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }} className="title-modal">
-                {selectedPost.subtitle}
-              </Typography>
-              {console.log(selectedPost)}
               <img
-                src={selectedPost.avatar}
+                src={avatars.keys().includes(`./${selectedPost.photo1}`) ? avatars(`./${selectedPost.photo1}`) : require('../../assets/images/Frank.png')}
                 alt={selectedPost.title}
-                style={{ maxWidth: "100%", height: "auto" }}
+                style={{ width: "300px", height: "auto"}}
               />
               
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {selectedPost.Description}
+                {selectedPost.description}
               </Typography>
-              <div className="button-fav-group">
-                            <Fab
-                              className="fab-button"
-                              color="primary"
-                              aria-label="Favorite icon"
-                              onClick={() => addLikedProduct (selectedPost)}
-                            >
-                              <FavoriteIcon />
-                            </Fab>
-                            <Fab
-                              className="shop-button"
-                              color="seconday"
-                              aria-label="Favorite icon"
-                              onClick={() => addToCart(selectedPost)}
-                            >
-                              <AddShoppingCartIcon />
-                            </Fab>
-                          </div>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Precio: ${selectedPost.price}
+              </Typography>
             </>
           )}
         </Box>
