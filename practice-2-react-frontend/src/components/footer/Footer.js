@@ -3,14 +3,16 @@ import { Grid } from "@mui/material";
 import Button from '@mui/material/Button';
 import "./Footer.scss";
 import locationicon from '../../assets/SVG/location-svgrepo-com.png'
-import IGicon from '../../assets/SVG/instagram-svgrepo-com.png'
-import TTicon from '../../assets/SVG/image.png'
-import WPicon from '../../assets/SVG/whatsapp-svgrepo-com.png'
+import IGicon from '../../assets/SVG/instagram-square.png'
+import TTicon from '../../assets/SVG/tiktok-square.png'
+import WPicon from '../../assets/SVG/whatsapp-square.png'
+import Logo from '../../assets/images/Logo.png'
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
   return (
+    <div>
     <footer className="footer">
       <div className="footer-container">
         <Grid container spacing={3}>
@@ -21,6 +23,10 @@ const Footer = () => {
               <div><h5>¡ Visítanos !</h5></div>
               <a href="https://maps.app.goo.gl/p5i2qEwZmrMYmvjH7" target="_blank" rel="noopener noreferrer"><img src={locationicon} alt="Location Icon" className="location-icon"/>
               </a>
+              </div>
+              <div className="atention-hours">
+                <h5 className="titles-hours">Horario de atención:</h5>
+                <h5 className="titles-hours">8:00 am - 6:00pm</h5>
               </div>
             </div>
           </Grid>
@@ -43,7 +49,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="https://www.tiktok.com/@fullhouse_shoes" target="_blank" rel="noopener noreferrer">
-                    <img src={TTicon} alt="Instagram Icon" className="TT-icon"/>
+                    <img src={TTicon} alt="Instagram Icon" className="TK-icon"/>
                     </a>
                   </li>
                   <li>
@@ -62,7 +68,12 @@ const Footer = () => {
           </Grid>
         </Grid>
       </div>
+      
     </footer>
+    <div className="logo">
+      <img src={Logo} alt="FullHouseIcon"/>
+    </div>
+    </div>
   );
 };
 

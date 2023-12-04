@@ -37,6 +37,16 @@
           margin-top: -4px;
         }
       }
+      .atention-hours{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 0px
+      }
+      .titles-hours{
+        margin-top: 0px;
+          color: rgb(156, 158, 160);
+      }
     }
     Button{
       background-color: #252525;
@@ -75,16 +85,16 @@
           margin: 5px;
         }
         .IG-icon {
-          width: 35x;
-          height: 35px;
+          width: 25x;
+          height: 25px;
         }
         .TK-icon {
-          width: 20px;
-          height: 20px;
+          width: 30px;
+          height: 30px;
         }
         .WP-icon {
-          width: 29px;
-          height: 29px;
+          width: 30px;
+          height: 30px;
         }
       }
     }
@@ -144,17 +154,20 @@
       }
     }
   }
-  .logo{
-    display: flex;
-    justify-content: center;
-    img{
-      max-width: 70px;
-        height: auto;
-        margin-right: 3%;
-    }
-  }
+
   
 }
+
+.logo{
+  display: flex;
+  justify-content: center;
+  img{
+    max-width: 70px;
+      height: auto;
+      margin-right: 3%;
+  }
+}
+
 .button-politics {
   color: white;
   background-color: #616161;
